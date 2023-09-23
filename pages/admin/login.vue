@@ -53,9 +53,10 @@
 
           <div>
             <button
-              class="bg-blue-900 py-2 px-3 text-white rounded-md shadow-md text-xl inline-block w-full focus:outline-none focus:bg-gray-900 mt-10"
+              class="bg-blue-900 py-2 px-3 text-white rounded-md shadow-md text-xl inline-block w-full focus:outline-none focus:bg-gray-900 mt-10" :disabled="isLoading" 
             >
-              Masuk
+              <span v-if="isLoading">Loading...</span> <!-- Menampilkan teks "Loading..." saat isLoading true -->
+              <span v-else>Masuk</span> <!-- Menampilkan teks "Masuk" saat isLoading false -->
             </button>
           </div>
         </div>
@@ -99,6 +100,7 @@ export default {
       },
       //validation
       validation: [],
+      isLoading: false 
     };
   },
 
@@ -109,6 +111,7 @@ export default {
       }
     },
     async login() {
+      this.isLoading = true;
       await this.$auth
         .loginWith("admin", {
           data: {
@@ -126,6 +129,7 @@ export default {
 
         .catch((error) => {
           //assign validation
+          this.isLoading = false;
           this.validation = error.response.data;
         });
     },

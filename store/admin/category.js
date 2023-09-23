@@ -17,6 +17,11 @@ export const mutations = {
     state.categories = payload;
   },
 
+  SET_CATEGORIES_ALL(state, payload) {
+    //set value state "categories"
+    state.categoryall = payload;
+  },
+
   //mutation "SET_PAGE"
   SET_PAGE(state, payload) {
     //set value state "page"
@@ -126,5 +131,52 @@ export const actions = {
           reject(error);
         });
     });
+  },
+
+  destroy({ dispatch, commit }, payload) {
+
+    //set promise
+    return new Promise((resolve, reject) => {
+    
+        //delete to Rest API "/api/admin/categories/:id" with method "DELETE"
+        this.$axios.delete(`/api/admin/categories/${payload}`)
+
+        //success
+        .then(() => {
+
+            //dispatch action "getCategoriesData"
+            dispatch('getCategoriesData')
+
+            //resolve promise
+            resolve()
+
+        })
+
+    })
+
+  },
+
+  //get list all categories
+  getListAllCategories({ commit, state }, payload) {
+
+      //set promise
+      return new Promise((resolve, reject) => {
+
+          //fetching Rest API "/api/web/categories" with method "GET"
+          this.$axios.get('/api/web/categories')
+          
+          //success
+          .then((response) => {
+          
+
+              //commit ti mutation "SET_CATEGORIES_DATA"
+              commit('SET_CATEGORIES_ALL', response.data.data)
+
+              //resolve promise
+              resolve()
+          })
+
+      })
+
   },
 };

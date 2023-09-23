@@ -69,6 +69,7 @@ export default {
     '@nuxtjs/auth-next',
     '@nuxtjs/axios',
     'vue-sweetalert2/nuxt',
+    '@nuxt/image',
 
   ],
 
@@ -140,6 +141,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  env: {
+    imageUrl: 'http://localhost:8000/storage', // Gantilah dengan URL gambar sesuai kebutuhan Anda
   },
 
   axios: {
