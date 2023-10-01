@@ -4,6 +4,8 @@ export const state = () => ({
     //invoices
     invoices: [],
 
+    invoicecustomer: [],
+
     //page
     page: 1,
 
@@ -19,6 +21,12 @@ export const mutations = {
 
         //set value state "invoices"
         state.invoices = payload
+    },
+
+    SET_INVOICES_CUSTOMER_DATA(state, payload) {
+
+        //set value state "invoices"
+        state.invoicecustomer = payload
     },
 
     //mutation "SET_PAGE"
@@ -56,6 +64,32 @@ export const actions = {
 
                 //commit ti mutation "SET_INVOICES_DATA"
                 commit('SET_INVOICES_DATA', response.data.data)
+
+                //resolve promise
+                resolve()
+            })
+
+        })
+
+    },
+
+    getInvoicesDataByCustomer({ commit, state }, payload) {
+
+        //search
+        let search = payload ? payload.pencarian : "";
+        let id = payload ? payload.id : "";
+
+        //set promise
+        return new Promise((resolve, reject) => {
+
+            //fetching Rest API "/api/admin/invoices" with method "GET"
+            this.$axios.get(`/api/admin/invoices/getbycustomer/${id}?q=${search}&page=${state.page}`)
+            
+            //success
+            .then((response) => {
+
+                //commit ti mutation "SET_INVOICES_DATA"
+                commit('SET_INVOICES_CUSTOMER_DATA', response.data.data)
 
                 //resolve promise
                 resolve()

@@ -137,7 +137,7 @@ export const actions = {
 
     //set promise
     return new Promise((resolve, reject) => {
-    
+
         //delete to Rest API "/api/admin/categories/:id" with method "DELETE"
         this.$axios.delete(`/api/admin/categories/${payload}`)
 
@@ -164,10 +164,10 @@ export const actions = {
 
           //fetching Rest API "/api/web/categories" with method "GET"
           this.$axios.get('/api/web/categories')
-          
+
           //success
           .then((response) => {
-          
+
 
               //commit ti mutation "SET_CATEGORIES_DATA"
               commit('SET_CATEGORIES_ALL', response.data.data)

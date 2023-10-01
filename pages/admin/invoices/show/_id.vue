@@ -32,7 +32,7 @@
               <tr v-for="order in invoice.orders" :key="order.id" style="background: #edf2f7;">
                 <td class="b-none" width="25%">
                   <div class="wrapper-image-cart">
-                    <img  :src="`${imageUrl}/products/${order.product.image}`" style="width: 100%;border-radius: .5rem">
+                    <img  :src="`${imageUrl}/products/${order.product.image}`" class="w-16 h-16">
                   </div>
                 </td>
                 <td class="b-none" width="50%">
