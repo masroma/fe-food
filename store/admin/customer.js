@@ -35,14 +35,16 @@ export const actions = {
     getCustomersData({ commit, state }, payload) {
 
         //search
-        let search = payload ? payload : ''
+        let search = payload ? payload.pencarian : "";
+        let perpage = payload ? payload.jumlahperpage : "";
+        let page = payload ? payload.page : "";
 
         //set promise
         return new Promise((resolve, reject) => {
 
             //fetching Rest API "/api/admin/customers" with method "GET"
-            this.$axios.get(`/api/admin/customers?q=${search}&page=${state.page}`)
-            
+            this.$axios.get(`/api/admin/customers?pencarian=${search}&page=${ page ?? state.page}&jumlahperpage=${perpage}`)
+
             //success
             .then((response) => {
 

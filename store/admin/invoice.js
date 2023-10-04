@@ -58,7 +58,7 @@ export const actions = {
 
             //fetching Rest API "/api/admin/invoices" with method "GET"
             this.$axios.get(`/api/admin/invoices?q=${search}&page=${state.page}`)
-            
+
             //success
             .then((response) => {
 
@@ -78,13 +78,15 @@ export const actions = {
         //search
         let search = payload ? payload.pencarian : "";
         let id = payload ? payload.id : "";
+        let perpage = payload ? payload.jumlahperpage : "";
+        let page = payload ? payload.page : "";
 
         //set promise
         return new Promise((resolve, reject) => {
 
             //fetching Rest API "/api/admin/invoices" with method "GET"
-            this.$axios.get(`/api/admin/invoices/getbycustomer/${id}?q=${search}&page=${state.page}`)
-            
+            this.$axios.get(`/api/admin/invoices/getbycustomer/${id}?pencarian=${search}&page=${ page ?? state.page}&jumlahperpage=${perpage}`)
+
             //success
             .then((response) => {
 

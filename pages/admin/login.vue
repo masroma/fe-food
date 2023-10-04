@@ -53,7 +53,7 @@
 
           <div>
             <button
-              class="bg-blue-900 py-2 px-3 text-white rounded-md shadow-md text-xl inline-block w-full focus:outline-none focus:bg-gray-900 mt-10" :disabled="isLoading" 
+              class="bg-blue-900 py-2 px-3 text-white rounded-md shadow-md text-xl inline-block w-full focus:outline-none focus:bg-gray-900 mt-10" :disabled="isLoading"
             >
               <span v-if="isLoading">Loading...</span> <!-- Menampilkan teks "Loading..." saat isLoading true -->
               <span v-else>Masuk</span> <!-- Menampilkan teks "Masuk" saat isLoading false -->
@@ -62,12 +62,12 @@
         </div>
       </form>
 
-      <div class="text-center mt-5">
+      <!-- <div class="text-center mt-5">
         Tidak bisa masuk ?
         <router-link :to="{ name: 'register' }" class="text-blue-900 font-bold"
           >Lupa Password
         </router-link>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -100,7 +100,7 @@ export default {
       },
       //validation
       validation: [],
-      isLoading: false 
+      isLoading: false
     };
   },
 

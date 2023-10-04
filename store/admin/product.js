@@ -43,14 +43,16 @@ export const actions = {
     getProductsData({ commit, state }, payload) {
 
         //search
-        let search = payload ? payload : ''
+        let search = payload ? payload.pencarian : "";
+        let perpage = payload ? payload.jumlahperpage : "";
+        let page = payload ? payload.page : "";
 
         //set promise
         return new Promise((resolve, reject) => {
 
             //fetching Rest API "/api/admin/products" with method "GET"
-            this.$axios.get(`/api/admin/products?q=${search}&page=${state.page}`)
-            
+            this.$axios.get(`/api/admin/products?pencarian=${search}&page=${ page ?? state.page}&jumlahperpage=${perpage}`)
+
             //success
             .then((response) => {
 
@@ -96,13 +98,13 @@ export const actions = {
 
         //set promise
         return new Promise((resolve, reject) => {
-           
+
             //get to Rest API "/api/admin/products/:id" with method "GET"
             this.$axios.get(`/api/admin/products/${payload}`)
 
             //success
             .then(response => {
-                
+
                 //commit to mutation "SET_PRODUCT_DATA"
                 commit('SET_PRODUCT_DATA', response.data.data)
 
@@ -147,7 +149,7 @@ export const actions = {
 
         //set promise
         return new Promise((resolve, reject) => {
-        
+
             //delete to Rest API "/api/admin/products/:id" with method "DELETE"
             this.$axios.delete(`/api/admin/products/${payload}`)
 
